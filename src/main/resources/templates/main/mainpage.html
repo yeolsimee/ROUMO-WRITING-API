@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="~{layouts/layout}">
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .carousel-inner > .item {
+            height: 350px;
+        }
+        .margin{
+            margin-bottom:30px;
+        }
+        .banner{
+            height: 300px;
+        }
+        .card-text{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        .center{
+            text-align:center;
+        }
+        .banner{
+            position: absolute; top:0; left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content" class="container center_div w-75 mt-4">
+
+    <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active item">
+                <img class="d-block w-100 banner" src="https://user-images.githubusercontent.com/13268420/112147492-1ab76200-8c20-11eb-8649-3d2f282c3c02.png" alt="First slide">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <th:block th:each="item, status: ${recommendRoutineDto.getContent()}">
+            <div class="col-md-4 margin">
+                <div class="card">
+                    <a th:href="'/itemdtl/' +${item.recommendRoutineId}" class="text-dark">
+                        <img th:src="${item.thumbnailUrl}" class="card-img-top" th:alt="${item.recommendRoutineId}" height="400">
+                    </a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+    <div th:with="start=${(recommendRoutineDto.number/maxPage)*maxPage + 1}, end=(${(recommendRoutineDto.totalPages == 0) ? 1 : (start + (maxPage - 1) < recommendRoutineDto.totalPages ? start + (maxPage - 1) : recommendRoutineDto.totalPages)})" >
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:classappend="${recommendRoutineDto.number eq 0}?'disabled':''">
+                <a th:href="@{/(page=${recommendRoutineDto.number-1})}" aria-label='Previous' class="page-link">
+                    <span aria-hidden='true'>Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${recommendRoutineDto.number eq page-1}?'active':''">
+                <a th:href="@{/(page=${page-1})}" th:inline="text" class="page-link">[[${page}]]</a>
+            </li>
+
+            <li class="page-item" th:classappend="${recommendRoutineDto.number+1 ge recommendRoutineDto.totalPages}?'disabled':''">
+                <a th:href="@{/(page=${recommendRoutineDto.number+1})}" aria-label='Next' class="page-link">
+                    <span aria-hidden='true'>Next</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</html>

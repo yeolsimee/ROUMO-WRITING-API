@@ -1,5 +1,6 @@
 package com.yeolsimee.writing.domain;
 
+import com.yeolsimee.writing.domain.recommendroutine.entity.RecommendRoutine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

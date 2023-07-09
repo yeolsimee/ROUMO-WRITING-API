@@ -1,4 +1,4 @@
-package com.yeolsimee.writing.ui.dto;
+package com.yeolsimee.writing.web.recommendroutine.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

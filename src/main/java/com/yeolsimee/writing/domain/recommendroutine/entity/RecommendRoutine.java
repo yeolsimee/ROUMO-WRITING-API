@@ -1,4 +1,4 @@
-package com.yeolsimee.writing.domain;
+package com.yeolsimee.writing.domain.recommendroutine.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
