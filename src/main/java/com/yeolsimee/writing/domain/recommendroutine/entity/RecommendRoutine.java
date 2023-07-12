@@ -1,9 +1,7 @@
 package com.yeolsimee.writing.domain.recommendroutine.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.yeolsimee.writing.domain.recommendimage.entity.RecommendImage;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,10 +13,16 @@ public class RecommendRoutine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String siteUrl;
-	private String thumbnailUrl;
+	@OneToOne
+	@JoinColumn(name = "recommend_image_id")
+	private RecommendImage recommendImage;
 
-	public RecommendRoutine(String siteUrl, String thumbnailUrl) {
+	public RecommendRoutine(String siteUrl, RecommendImage recommendImage) {
 		this.siteUrl = siteUrl;
-		this.thumbnailUrl = thumbnailUrl;
+		this.recommendImage = recommendImage;
+	}
+
+	public RecommendRoutine(String siteUrl) {
+		this.siteUrl = siteUrl;
 	}
 }
