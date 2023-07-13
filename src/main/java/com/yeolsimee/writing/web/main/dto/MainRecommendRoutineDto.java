@@ -16,7 +16,7 @@ public class MainRecommendRoutineDto {
         return MainRecommendRoutineDto.builder()
                 .recommendRoutineId(recommendRoutine.getId())
                 .siteUrl(recommendRoutine.getSiteUrl())
-                .thumbnailUrl(recommendRoutine.getThumbnailUrl())
+                .thumbnailUrl(recommendRoutine.getRecommendImage().getImageUrl())
                 .build();
     }
 }
