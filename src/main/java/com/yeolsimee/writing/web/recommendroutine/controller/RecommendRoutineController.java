@@ -40,6 +40,6 @@ public class RecommendRoutineController {
 			return "recommendroutine/registerform";
 		}
 
-		return "main/mainpage";
+		return "redirect:/";
 	}
 }
