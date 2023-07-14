@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
-public class RecommendImage {
+public class ArticleImage {
 	private String imageName;
 	private String imageUrl;
 	private String originalImageName;
 
 
-	public RecommendImage(String imageName, String imageUrl, String originalImageName) {
+	public ArticleImage(String imageName, String imageUrl, String originalImageName) {
 		this.imageName = imageName;
 		this.imageUrl = imageUrl;
 		this.originalImageName = originalImageName;

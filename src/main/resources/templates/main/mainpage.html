@@ -45,32 +45,32 @@
     </div>
 
     <div class="row">
-        <th:block th:each="item, status: ${recommendRoutineDto.getContent()}">
+        <th:block th:each="item, status: ${articleDto.getContent()}">
             <div class="col-md-4 margin">
                 <div class="card">
-                    <a th:href="'/itemdtl/' +${item.recommendRoutineId}" class="text-dark">
-                        <img th:src="${item.thumbnailUrl}" class="card-img-top" th:alt="${item.recommendRoutineId}" height="400">
+                    <a th:href="'/itemdtl/' +${item.articleId}" class="text-dark">
+                        <img th:src="${item.thumbnailUrl}" class="card-img-top" th:alt="${item.articleId}" height="400">
                     </a>
                 </div>
             </div>
         </th:block>
     </div>
 
-    <div th:with="start=${(recommendRoutineDto.number/maxPage)*maxPage + 1}, end=(${(recommendRoutineDto.totalPages == 0) ? 1 : (start + (maxPage - 1) < recommendRoutineDto.totalPages ? start + (maxPage - 1) : recommendRoutineDto.totalPages)})" >
+    <div th:with="start=${(articleDto.number/maxPage)*maxPage + 1}, end=(${(articleDto.totalPages == 0) ? 1 : (start + (maxPage - 1) < articleDto.totalPages ? start + (maxPage - 1) : articleDto.totalPages)})" >
         <ul class="pagination justify-content-center">
 
-            <li class="page-item" th:classappend="${recommendRoutineDto.number eq 0}?'disabled':''">
-                <a th:href="@{/(page=${recommendRoutineDto.number-1})}" aria-label='Previous' class="page-link">
+            <li class="page-item" th:classappend="${articleDto.number eq 0}?'disabled':''">
+                <a th:href="@{/(page=${articleDto.number-1})}" aria-label='Previous' class="page-link">
                     <span aria-hidden='true'>Previous</span>
                 </a>
             </li>
 
-            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${recommendRoutineDto.number eq page-1}?'active':''">
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${articleDto.number eq page-1}?'active':''">
                 <a th:href="@{/(page=${page-1})}" th:inline="text" class="page-link">[[${page}]]</a>
             </li>
 
-            <li class="page-item" th:classappend="${recommendRoutineDto.number+1 ge recommendRoutineDto.totalPages}?'disabled':''">
-                <a th:href="@{/(page=${recommendRoutineDto.number+1})}" aria-label='Next' class="page-link">
+            <li class="page-item" th:classappend="${articleDto.number+1 ge articleDto.totalPages}?'disabled':''">
+                <a th:href="@{/(page=${articleDto.number+1})}" aria-label='Next' class="page-link">
                     <span aria-hidden='true'>Next</span>
                 </a>
             </li>

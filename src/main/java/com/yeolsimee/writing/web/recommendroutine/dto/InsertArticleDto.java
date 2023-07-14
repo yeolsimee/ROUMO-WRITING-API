@@ -5,8 +5,8 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class InsertRecommendRoutineDto {
-	@NotBlank(message = "상품명은 필수 입력 값입니다.")
+public class InsertArticleDto {
+	@NotBlank(message = "사이트 URL은 필수 입력 값입니다.")
 	private String siteUrl;
 	private MultipartFile thumbnailFile;
 }

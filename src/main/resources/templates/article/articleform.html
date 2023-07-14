@@ -14,10 +14,10 @@
 
 <div layout:fragment="content" class="container center_div w-50 mt-3 mb-2">
 
-  <form role="form" method="post" action="/recommendroutine" enctype="multipart/form-data" th:object="${insertRecommendRoutineDto}">
+  <form role="form" method="post" action="/article" enctype="multipart/form-data" th:object="${insertArticleDto}">
 
     <p class="h2">
-      추천 루틴 등록
+      기사 등록
     </p>
 
     <div class="input-group">
@@ -39,7 +39,7 @@
     </div>
 
     <div class="mt-3 text-center">
-      <button type="submit" class="btn btn-primary">추천 루틴 생성</button>
+      <button type="submit" class="btn btn-primary">기사 생성</button>
     </div>
 
   </form>
