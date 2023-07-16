@@ -1,7 +1,7 @@
 package com.yeolsimee.writing.web.main.service;
 
-import com.yeolsimee.writing.domain.recommendroutine.entity.Article;
-import com.yeolsimee.writing.domain.recommendroutine.service.ArticleService;
+import com.yeolsimee.writing.domain.article.entity.Article;
+import com.yeolsimee.writing.domain.article.service.ArticleService;
 import com.yeolsimee.writing.web.main.dto.MainArticleDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

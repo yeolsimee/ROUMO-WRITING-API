@@ -1,4 +1,4 @@
-package com.yeolsimee.writing.domain.recommendroutine.entity;
+package com.yeolsimee.writing.domain.article.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

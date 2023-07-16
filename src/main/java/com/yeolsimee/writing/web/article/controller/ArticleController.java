@@ -1,8 +1,8 @@
-package com.yeolsimee.writing.web.recommendroutine.controller;
+package com.yeolsimee.writing.web.article.controller;
 
-import com.yeolsimee.writing.domain.recommendroutine.entity.Article;
-import com.yeolsimee.writing.domain.recommendroutine.service.ArticleService;
-import com.yeolsimee.writing.web.recommendroutine.dto.InsertArticleDto;
+import com.yeolsimee.writing.domain.article.entity.Article;
+import com.yeolsimee.writing.domain.article.service.ArticleService;
+import com.yeolsimee.writing.web.article.dto.InsertArticleDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -25,6 +25,11 @@ public class ArticleController {
 	public String getArticleForm(Model model) {
 		model.addAttribute("insertArticleDto", new InsertArticleDto());
 		return "article/articleform";
+	}
+	@GetMapping("/externalarticle")
+	public String getExternalArticleForm(Model model) {
+		model.addAttribute("insertArticleDto", new InsertArticleDto());
+		return "article/externalarticleform";
 	}
 
 	@PostMapping("/article")

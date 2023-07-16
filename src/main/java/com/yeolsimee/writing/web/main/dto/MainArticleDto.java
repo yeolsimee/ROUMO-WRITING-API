@@ -1,6 +1,6 @@
 package com.yeolsimee.writing.web.main.dto;
 
-import com.yeolsimee.writing.domain.recommendroutine.entity.Article;
+import com.yeolsimee.writing.domain.article.entity.Article;
 import lombok.Builder;
 import lombok.Data;
 

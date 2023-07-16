@@ -1,11 +1,11 @@
-package com.yeolsimee.writing.domain.recommendroutine.service;
+package com.yeolsimee.writing.domain.article.service;
 
-import com.yeolsimee.writing.domain.recommendroutine.entity.Article;
-import com.yeolsimee.writing.domain.recommendroutine.entity.ArticleImage;
-import com.yeolsimee.writing.domain.recommendroutine.repository.ArticleRepository;
+import com.yeolsimee.writing.domain.article.entity.Article;
+import com.yeolsimee.writing.domain.article.entity.ArticleImage;
+import com.yeolsimee.writing.domain.article.repository.ArticleRepository;
 import com.yeolsimee.writing.infra.AmazonS3Service;
 import com.yeolsimee.writing.infra.UploadFile;
-import com.yeolsimee.writing.web.recommendroutine.dto.InsertArticleDto;
+import com.yeolsimee.writing.web.article.dto.InsertArticleDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

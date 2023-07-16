@@ -1,7 +1,7 @@
 package com.yeolsimee.writing.domain;
 
-import com.yeolsimee.writing.domain.recommendroutine.entity.Article;
-import com.yeolsimee.writing.domain.recommendroutine.entity.ArticleImage;
+import com.yeolsimee.writing.domain.article.entity.Article;
+import com.yeolsimee.writing.domain.article.entity.ArticleImage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
