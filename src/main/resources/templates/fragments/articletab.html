@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="articleTab">
+  <ul class="nav nav-tabs nav-bordered mb-3">
+    <li class="nav-item">
+      <a href="javascript:void(0);" class="nav-link" id="commonArticleForm" th:href="@{/article}">
+        <i class="uil-clipboard-alt d-md-none d-block"></i>
+        <span class="d-none d-md-block">일반기사</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="javascript:void(0);" class="nav-link" id="accountFormTab" th:href="@{/externalarticle}">
+        <i class="uil-clipboard-alt d-md-none d-block"></i>
+        <span class="d-none d-md-block">외부기사</span>
+      </a>
+    </li>
+  </ul>
+</th:block>
+</html>
