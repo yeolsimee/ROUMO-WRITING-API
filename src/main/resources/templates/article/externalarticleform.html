@@ -16,7 +16,8 @@
 
     <div th:include="fragments/articletab :: articleTab"></div>
 
-    <form role="form" method="post" action="/article" enctype="multipart/form-data" th:object="${insertArticleDto}">
+    <form role="form" method="post" action="/article" enctype="multipart/form-data" th:object="${insertExternalArticleDto}">
+        <input type="hidden" name="articleType" value="EXTERNAL">
 
         <p class="h2">
             외부 기사 등록

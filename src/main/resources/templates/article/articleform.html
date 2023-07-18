@@ -18,7 +18,8 @@
 
     <div th:include="fragments/articletab :: articleTab"></div>
 
-    <form role="form" method="post" action="/article" enctype="multipart/form-data" th:object="${insertArticleDto}">
+    <form role="form" method="post" action="/article" enctype="multipart/form-data" th:object="${insertCommonArticleDto}">
+    <input type="hidden" name="articleType" value="COMMON">
 
         <p class="h2">
             일반 기사 등록
@@ -26,17 +27,41 @@
 
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text">사이트URL</span>
+                <span class="input-group-text">화면 타이틀</span>
             </div>
-            <input type="text" th:field="*{siteUrl}" class="form-control" placeholder="사이트URL을 입력해주세요">
+            <input type="text" th:field="*{articleTitle}" class="form-control" placeholder="화면 타이틀을 입력해주세요">
         </div>
-        <p th:errors="*{siteUrl}" class="field-error">Incorrect data</p>
+        <p th:errors="*{articleTitle}" class="field-error">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">제목</span>
+            </div>
+            <input type="text" th:field="*{articleSubject}" class="form-control" placeholder="제목을 입력해주세요">
+        </div>
+        <p th:errors="*{articleSubject}" class="field-error">Incorrect data</p>
 
         <div class="input-group mb-3">
             <input class="form-control custom-file-input" th:id="|item_img_file${num}|" type="file"
                    aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="thumbnailFile">
             </button>
         </div>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">부제</span>
+            </div>
+            <input type="text" th:field="*{articleSubSubject}" class="form-control" placeholder="부제를 입력해주세요">
+        </div>
+        <p th:errors="*{articleSubSubject}" class="field-error">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">인터뷰 내용 - 서론</span>
+            </div>
+            <input type="text" th:field="*{articleIntroduction}" class="form-control" placeholder="서론을 입력해주세요">
+        </div>
+        <p th:errors="*{articleIntroduction}" class="field-error">Incorrect data</p>
 
         <div class="mt-3" th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error text-center" th:each="error : ${#fields.globalErrors()}" th:text="${error}">글로벌 오류

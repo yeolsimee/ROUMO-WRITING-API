@@ -5,7 +5,8 @@ import com.yeolsimee.writing.domain.article.entity.ArticleImage;
 import com.yeolsimee.writing.domain.article.repository.ArticleRepository;
 import com.yeolsimee.writing.infra.AmazonS3Service;
 import com.yeolsimee.writing.infra.UploadFile;
-import com.yeolsimee.writing.web.article.dto.InsertArticleDto;
+import com.yeolsimee.writing.web.article.dto.InsertCommonArticleDto;
+import com.yeolsimee.writing.web.article.dto.InsertExternalArticleDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,9 +29,18 @@ public class ArticleService {
     }
 
 	@Transactional
-	public Article createRecommendRoutine(InsertArticleDto insertArticleDto) throws IOException {
-		ArticleImage articleImage = saveRecommendImage(insertArticleDto.getThumbnailFile());
-		Article article = new Article(insertArticleDto.getSiteUrl(), articleImage);
+	public Article createCommonArticle(InsertCommonArticleDto insertCommonArticleDto) throws IOException {
+		ArticleImage articleImage = saveRecommendImage(insertCommonArticleDto.getThumbnailFile());
+		Article article = Article.createCommonArticle(InsertCommonArticleDto.toEntity(insertCommonArticleDto, articleImage));
+		Article savedArticle = articleRepository.save(article);
+		return savedArticle;
+	}
+
+	@Transactional
+	public Article createExternalArticle(InsertExternalArticleDto insertExternalArticleDto) throws IOException {
+		ArticleImage articleImage = saveRecommendImage(insertExternalArticleDto.getThumbnailFile());
+
+		Article article = Article.createExternalArticle(InsertExternalArticleDto.toEntity(insertExternalArticleDto, articleImage));
 		Article savedArticle = articleRepository.save(article);
 		return savedArticle;
 	}
