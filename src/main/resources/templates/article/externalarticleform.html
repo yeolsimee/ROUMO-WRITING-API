@@ -23,6 +23,12 @@
             외부 기사 등록
         </p>
 
+        <div class="input-group mb-3">
+            <input class="form-control custom-file-input" th:id="|item_img_file${num}|" type="file"
+                   aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="thumbnailFile">
+            </button>
+        </div>
+
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">사이트URL</span>
@@ -30,12 +36,6 @@
             <input type="text" th:field="*{siteUrl}" class="form-control" placeholder="사이트URL을 입력해주세요">
         </div>
         <p th:errors="*{siteUrl}" class="field-error">Incorrect data</p>
-
-        <div class="input-group mb-3">
-            <input class="form-control custom-file-input" th:id="|item_img_file${num}|" type="file"
-                   aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="thumbnailFile">
-            </button>
-        </div>
 
         <div class="mt-3" th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error text-center" th:each="error : ${#fields.globalErrors()}" th:text="${error}">글로벌 오류
