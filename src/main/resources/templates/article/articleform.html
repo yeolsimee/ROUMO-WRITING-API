@@ -157,9 +157,10 @@
             inputContainer.appendChild(inputGroup);
         }
 
-        function deleteRecommendRoutineForm(button) {
-            //todo: 추천루틴폼 삭제 기능
-            console.log("헤헤");
+        function deleteRecommendRoutineForm() {
+            var button = event.target;
+            var container = button.parentNode;
+            container.parentNode.removeChild(container);
         }
 
     </script>
