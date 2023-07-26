@@ -21,15 +21,15 @@ import java.io.IOException;
 @Transactional(readOnly = true)
 public class ArticleService {
 
-    private final ArticleRepository articleRepository;
+	private final ArticleRepository articleRepository;
 	private final AmazonS3Service amazonS3Service;
 
-    public Page<Article> findAll(Pageable pageable) {
-        return articleRepository.findAll(pageable);
-    }
+	public Page<Article> findAll(Pageable pageable) {
+		return articleRepository.findAll(pageable);
+	}
 
 	@Transactional
-	public Article createCommonArticle(InsertCommonArticleDto insertCommonArticleDto) throws IOException {
+	public Article createCommonArticle(InsertCommonArticleDto insertCommonArticleDto) {
 		ArticleImage articleImage = saveRecommendImage(insertCommonArticleDto.getThumbnailFile());
 		Article article = Article.createCommonArticle(InsertCommonArticleDto.toEntity(insertCommonArticleDto, articleImage));
 		Article savedArticle = articleRepository.save(article);
@@ -37,7 +37,7 @@ public class ArticleService {
 	}
 
 	@Transactional
-	public Article createExternalArticle(InsertExternalArticleDto insertExternalArticleDto) throws IOException {
+	public Article createExternalArticle(InsertExternalArticleDto insertExternalArticleDto) {
 		ArticleImage articleImage = saveRecommendImage(insertExternalArticleDto.getThumbnailFile());
 
 		Article article = Article.createExternalArticle(InsertExternalArticleDto.toEntity(insertExternalArticleDto, articleImage));

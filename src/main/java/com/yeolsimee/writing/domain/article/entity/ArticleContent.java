@@ -11,4 +11,9 @@ import lombok.NoArgsConstructor;
 public class ArticleContent {
 	private String subheading;
 	private String contentBody;
+
+	public ArticleContent(String subheading, String contentBody) {
+		this.subheading = subheading;
+		this.contentBody = contentBody;
+	}
 }

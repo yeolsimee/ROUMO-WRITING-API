@@ -22,9 +22,8 @@ public class InsertCommonArticleDto {
 	private String articleSubSubject;
 	@NotBlank(message = "인터뷰서론은 필수 입력 값입니다.")
 	private String articleIntroduction;
-	@NotBlank(message = "인터뷰내용은 필수 입력 값입니다.")
 	private List<ArticleContent> articleContents = new ArrayList<>();
-	@NotBlank(message = "썸네일이미지는 필수 입력 값입니다.")
+	private List<String> articleRecommendRoutines = new ArrayList<>();
 	private MultipartFile thumbnailFile;
 
 	public InsertCommonArticleDto() {
@@ -38,6 +37,7 @@ public class InsertCommonArticleDto {
 				.articleSubSubject(insertCommonArticleDto.getArticleSubSubject())
 				.articleIntroduction(insertCommonArticleDto.getArticleIntroduction())
 				.articleContents(insertCommonArticleDto.getArticleContents())
+				.articleRecommendRoutines(insertCommonArticleDto.getArticleRecommendRoutines())
 				.articleImage(articleImage)
 				.build();
 	}
