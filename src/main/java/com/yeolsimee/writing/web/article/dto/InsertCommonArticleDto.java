@@ -22,7 +22,8 @@ public class InsertCommonArticleDto {
 	private String articleSubSubject;
 	@NotBlank(message = "인터뷰서론은 필수 입력 값입니다.")
 	private String articleIntroduction;
-	private List<ArticleContent> articleContents = new ArrayList<>();
+	private List<String> subheading = new ArrayList<>();
+	private List<String> contentBody = new ArrayList<>();
 	private List<String> articleRecommendRoutines = new ArrayList<>();
 	private MultipartFile thumbnailFile;
 
@@ -30,13 +31,19 @@ public class InsertCommonArticleDto {
 	}
 
 	public static Article toEntity(InsertCommonArticleDto insertCommonArticleDto, ArticleImage articleImage) {
+		List<ArticleContent> articleContents = new ArrayList<>();
+
+		for (int i = 0; i < insertCommonArticleDto.getSubheading().size(); i++) {
+			articleContents.add(new ArticleContent(insertCommonArticleDto.getSubheading().get(i), insertCommonArticleDto.getContentBody().get(i)));
+		}
+
 		return Article.builder()
 				.articleType(ArticleType.valueOf(insertCommonArticleDto.getArticleType()))
 				.articleTitle(insertCommonArticleDto.getArticleTitle())
 				.articleSubject(insertCommonArticleDto.getArticleSubject())
 				.articleSubSubject(insertCommonArticleDto.getArticleSubSubject())
 				.articleIntroduction(insertCommonArticleDto.getArticleIntroduction())
-				.articleContents(insertCommonArticleDto.getArticleContents())
+				.articleContents(articleContents)
 				.articleRecommendRoutines(insertCommonArticleDto.getArticleRecommendRoutines())
 				.articleImage(articleImage)
 				.build();

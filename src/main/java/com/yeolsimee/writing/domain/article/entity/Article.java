@@ -1,9 +1,10 @@
 package com.yeolsimee.writing.domain.article.entity;
 
-import com.yeolsimee.writing.web.article.dto.InsertCommonArticleDto;
-import com.yeolsimee.writing.web.article.dto.InsertExternalArticleDto;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
