@@ -44,3 +44,40 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_CONTAINER_REGISTRY }}/roumo-writing-api:latest
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_CONTAINER_REGISTRY }}/roumo-writing-api:latest
           cache-to: type=inline
+
+  pull_from_registry:
+    name: Connect server ssh and pull from container registry
+    needs: push_to_registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Github Actions IP
+        id: ip
+        uses: haythem/public-ip@v1.2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Add Github Actions IP to Security group
+        run: |
+          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
+      - name: connect ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          key: ${{ secrets.PROD_KEY }}
+          port: ${{ secrets.PROD_PORT }}
+          script: |
+            sudo docker rm -f $(docker ps -aqf "name=writing-api")
+            sudo docker pull ${{ secrets.DOCKERHUB_CONTAINER_REGISTRY }}/roumo-writing-api
+            docker run -d -p 8088:8088 -e TZ=Asia/Seoul ${{ secrets.DOCKERHUB_CONTAINER_REGISTRY }}/roumo-writing-api
+            docker image prune -f
+
+      - name: Remove Github Actions IP From Security Group
+        run: |
+          aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
